@@ -1,0 +1,21 @@
+<h1 mat-dialog-title class="title">{{ dialogData.title }}</h1>
+
+<div mat-dialog-content>
+  <div class="content">
+    {{ dialogData.content }}
+  </div>
+</div>
+
+<div mat-dialog-actions [align]="'end'">
+  <button
+    mat-button
+    (click)="onNoClick()">
+    Cancel
+  </button>
+
+  <button
+    mat-button
+    [mat-dialog-close]="true">
+    OK
+  </button>
+</div>

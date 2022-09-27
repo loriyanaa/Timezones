@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="spinner" *ngIf="selectedUserIsLoading$ | async">
+    <mat-spinner class="spinner-icon"></mat-spinner>
+  </div>
+
+  <div class="user" *ngIf="selectedUser$ | async as selectedUser">
+    <div class="user_form">
+      <h1 class="user__header" >
+        {{ selectedUser.id ? 'Edit' : 'Add' }} user
+      </h1>
+      
+      <mat-card>
+        <div class="user__error">
+          {{ errorMessage$ | async }}
+        </div>
+
+        <app-user-form
+          #form
+          [model]="selectedUser"
+          [userRoles]="userRoles$ | async"
+          [resolution]="resolution$ | async">
+        </app-user-form>
+  
+        <div class="user__actions">        
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="onSave(form)">
+            Save
+          </button>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

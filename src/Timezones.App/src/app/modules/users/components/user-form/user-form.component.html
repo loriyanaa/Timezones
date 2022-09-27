@@ -1,0 +1,91 @@
+<form [formGroup]="form">
+  <p
+    *ngIf="hasValidationErrors$ | async"
+    class="validation-errors">
+    Please fix all validation errors and try again.
+  </p>
+  
+  <mat-grid-list [cols]="resolution === ResolutionType.Mobile ? 1 : 2" rowHeight="120px" [gutterSize]="'20px'">
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+
+        <input
+          matInput
+          formControlName="email"
+          placeholder="Type user email">
+
+        <mat-error *ngIf="form.get('email').errors && (form.get('email').dirty || form.get('email').touched)">
+          <div *ngIf="form.get('email').errors['required']">Email is required</div>
+          <div *ngIf="form.get('email').errors['email']">Email is not valid</div>
+        </mat-error>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Role</mat-label>
+
+        <mat-select formControlName="roleName">
+          <mat-option *ngFor="let role of userRoles" [value]="role">
+            {{ role }}
+          </mat-option>
+        </mat-select>
+      
+        <mat-error *ngIf="form.get('roleName').errors && (form.get('roleName').dirty || form.get('roleName').touched)">
+          <div *ngIf="form.get('roleName').errors['required']">Role is required</div>
+        </mat-error>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile *ngIf="!isInEditMode">
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+
+        <input
+          matInput
+          formControlName="password"
+          placeholder="Type user password"
+          [type]="showPassword ? 'text' : 'password'">
+
+        <button
+          class="password-icon"
+          mat-icon-button
+          matSuffix
+          (click)="onTogglePasswordVisibility()">
+          <mat-icon>{{ showPassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+        </button>
+      
+        <mat-error *ngIf="form.get('password').errors && (form.get('password').dirty || form.get('password').touched)">
+          <div *ngIf="form.get('password').errors['required']">Password is required</div>
+          <div *ngIf="form.get('password').errors['minlength']">Password should be at least {{ form.get('password').errors['minlength'].requiredLength }} characters long</div>
+          <div *ngIf="form.get('password').errors['password']">Password should contain at least one lowercase letter, one uppercase letter and one number</div>
+        </mat-error>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile *ngIf="!isInEditMode">
+      <mat-form-field>
+        <mat-label>Confirm password</mat-label>
+
+        <input
+          matInput
+          formControlName="confirmPassword"
+          placeholder="Confirm user password"
+          [type]="showConfirmPassword ? 'text' : 'password'">
+
+        <button
+          class="password-icon"
+          mat-icon-button
+          matSuffix
+          (click)="onToggleConfirmPasswordVisibility()">
+          <mat-icon>{{ showConfirmPassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+        </button>
+      
+        <mat-error *ngIf="form.get('confirmPassword').errors && (form.get('confirmPassword').dirty || form.get('confirmPassword').touched)">
+          <div *ngIf="form.get('confirmPassword').errors['mustMatch']">Passwords do not match</div>
+        </mat-error>
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>

@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="login">
+    <div class="login__form">
+      <h1 class="login__header">
+        Timezones manager
+      </h1>
+
+      <div class="login__error">
+        {{ errorMessage$ | async }}
+      </div>
+
+      <app-login-form #loginForm>
+      </app-login-form>
+
+      <div>
+        Don't have an account? <a routerLink="/register">Register</a> 
+      </div>
+
+      <div class="login__actions">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="onLogin(loginForm)">
+          Login
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<form [formGroup]="form">
+  <p
+    *ngIf="hasValidationErrors$ | async"
+    class="validation-errors">
+    Please fix all validation errors and try again.
+  </p>
+  
+  <mat-grid-list [cols]="resolution === ResolutionType.Mobile ? 1 : 2" rowHeight="80px" [gutterSize]="'20px'">
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+
+        <input
+          matInput
+          formControlName="name"
+          placeholder="Type timezone name">
+
+        <mat-error *ngIf="form.get('name').errors && (form.get('name').dirty || form.get('name').touched)">
+          <div *ngIf="form.get('name').errors['required']">Name is required</div>
+          <div *ngIf="form.get('name').errors['maxlength']">Name can be at most {{ form.get('name').errors['maxlength'].requiredLength }} characters long</div>
+        </mat-error>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>City</mat-label>
+
+        <input
+          matInput
+          formControlName="city"
+          placeholder="Type timezone city">
+      
+        <mat-error *ngIf="form.get('city').errors && (form.get('city').dirty || form.get('city').touched)">
+          <div *ngIf="form.get('city').errors['required']">City is required</div>
+          <div *ngIf="form.get('city').errors['maxlength']">City name can be at most {{ form.get('city').errors['maxlength'].requiredLength }} characters long</div>
+        </mat-error>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>GMT offset</mat-label>
+
+        <input
+          matInput
+          formControlName="offset"
+          placeholder="Type offset to GMT e.g. +02:00">
+      
+        <mat-error *ngIf="form.get('offset').errors && (form.get('offset').dirty || form.get('offset').touched)">
+          <div *ngIf="form.get('offset').errors['required']">GMT offset is required</div>
+          <div *ngIf="form.get('offset').errors['pattern']">GMT offset should be valid (e.g. +02:00)</div>
+        </mat-error>
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>

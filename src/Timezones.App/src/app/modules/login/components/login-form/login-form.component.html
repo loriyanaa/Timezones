@@ -1,0 +1,49 @@
+<form [formGroup]="form">
+  <p
+    *ngIf="hasValidationErrors$ | async"
+    class="validation-errors">
+    Please fix all validation errors and try again.
+  </p>
+  
+  <mat-grid-list cols="1" rowHeight="100px">
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+
+        <input
+          matInput
+          formControlName="email"
+          placeholder="Type your email">
+
+        <mat-error *ngIf="form.get('email').errors && (form.get('email').dirty || form.get('email').touched)">
+          <div *ngIf="form.get('email').errors['required']">Email is required</div>
+          <div *ngIf="form.get('email').errors['email']">Invalid email</div>
+        </mat-error>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+
+        <input
+          matInput
+          formControlName="password"
+          placeholder="Type your password"
+          [type]="showPassword ? 'text' : 'password'">
+
+        <button
+          class="password-icon"
+          mat-icon-button
+          matSuffix
+          (click)="onTogglePasswordVisibility()">
+          <mat-icon>{{ showPassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+        </button>
+      
+        <mat-error *ngIf="form.get('password').errors && (form.get('password').dirty || form.get('password').touched)">
+          <div *ngIf="form.get('password').errors['required']">Password is required</div>
+        </mat-error>
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>

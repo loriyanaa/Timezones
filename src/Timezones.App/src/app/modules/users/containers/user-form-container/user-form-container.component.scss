@@ -1,0 +1,30 @@
+@import '../../../../../variables.scss';
+
+:host {
+  display: block;
+  padding: 20px 100px;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.user__header {
+  color: var(--color-header);
+}
+.user__error {
+  color: red;
+}
+.user__actions {
+  padding-top: 20px;
+}
+
+@media screen and (max-width: 1200px) {
+  :host {
+    padding: 20px 50px;
+  }
+}
+
+@media screen and (max-width: $tabletMinResolution) {
+  :host {
+    padding: 0px;
+  }
+}

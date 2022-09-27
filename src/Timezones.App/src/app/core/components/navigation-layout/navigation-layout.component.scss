@@ -1,0 +1,131 @@
+:host ::ng-deep {
+  .mat-drawer-content {
+    background-color: var(--color-navigation-content-background);
+  }
+
+  .cdk-overlay-container .cdk-overlay-connected-position-bounding-box {
+    padding-left: 35px;
+  }
+}
+
+::ng-deep .account-menu .mat-menu-content {
+  text-align: center;
+  margin: 5px 15px 0px;
+}
+
+.sidenav-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.mat-drawer {
+  width: 220px;
+  background: var(--color-navigation-background);
+}
+
+.title {
+  border-bottom: 1px solid var(--color-on-navigation-background);
+  padding: 9px 0 9px 25px;
+  height: 51px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  color: var(--color-on-navigation-background);
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.sidenav__item {
+  display: flex;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 16px;
+  margin: 30px 0px 15px 0px;
+  text-decoration: none;
+  color: var(--color-on-navigation-background);
+  cursor: pointer;
+  align-items: center;
+  padding: 10px 20px;
+
+  &:hover {
+    color: white;
+  }
+}
+.sidenav__item--active {
+  text-decoration: underline;
+  color: white;
+}
+
+.sidenav-content {
+  height: 100%;
+}
+
+.mobile-menu {
+  padding: 10px;
+  background: var(--color-navigation-background);
+  color: var(--color-on-navigation-background);
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-navigation {
+  height: 70px;
+}
+.top-navigation__content {
+  padding: 11px 100px;
+  max-width: 1200px;
+  height: 50px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.top-navigation__account {
+  background-color: var(--color-navigation-background);
+  color: #FFFFFF;
+  padding: 10px 15px;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-left: auto;
+}
+.top-navigation__link {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+}
+
+.arrow__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+}
+.arrow__content {
+  border-top: 6px solid white;
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+}
+
+@media screen and (max-width: 1200px) {
+  .top-navigation__content {
+    padding: 10px 50px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .sidenav-content {
+    padding: 10px;
+  }
+
+  .top-navigation__account {
+    padding: 8px 10px;
+  }
+
+  .account__link {
+    font-size: 14px;
+  }
+}

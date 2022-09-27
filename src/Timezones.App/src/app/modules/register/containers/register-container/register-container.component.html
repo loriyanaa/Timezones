@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="register">
+    <div class="register__form">
+      <h1 class="register__header">Register</h1>
+
+      <div class="register__error">{{ errorMessage$ | async }}</div>
+
+      <app-register-form #registerForm></app-register-form>
+
+      <div>
+        Already have an account? <a routerLink="/login">Log in</a> 
+      </div>
+    </div>
+
+    <div class="register__actions">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onRegister(registerForm)">
+        Submit
+      </button>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,14 @@
+<div class="spinner" *ngIf="usersIsLoading$ | async">
+  <mat-spinner class="spinner-icon"></mat-spinner>
+</div>
+
+<app-users
+  [users]="users$ | async"
+  [paginationInfo]="usersListInfo$ | async"
+  [filterValue]="filter"
+  (add)="onAdd()"
+  (edit)="onEdit($event)"
+  (delete)="onDelete($event)"
+  (page)="onPage($event)"
+  (filter)="onFilter($event)">
+</app-users>

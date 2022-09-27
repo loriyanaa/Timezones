@@ -1,0 +1,7 @@
+<app-navigation-layout
+  [isAdmin]="isAdmin"
+  [isAuthenticated]="isAuthenticated"
+  [userEmail]="userEmail"
+  [resolution]="resolution$ | async"
+  (logout)="onLogout()">
+</app-navigation-layout>

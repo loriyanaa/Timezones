@@ -1,0 +1,66 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav 
+    #matSidenav
+    [mode]="resolution === ResolutionType.Mobile ? 'over' : 'side'"
+    [opened]="resolution !== ResolutionType.Mobile">
+    <div class="title">
+      Timezones manager
+    </div>
+
+    <div class="sidenav">
+      <a
+        class="sidenav__item"
+        routerLinkActive="sidenav__item--active"
+        [routerLinkActiveOptions]="{exact:false}"
+        #activeLink="routerLinkActive"
+        [routerLink]="'/timezones'">
+        <span>Timezones</span>
+      </a>
+      <a 
+        *ngIf="isAdmin"
+        class="sidenav__item"
+        routerLinkActive="sidenav__item--active"
+        [routerLinkActiveOptions]="{exact:false}"
+        #activeLink="routerLinkActive"
+        [routerLink]="'/users'">
+        <span>Users</span>
+      </a>
+    </div>
+  </mat-sidenav>
+
+  <div #matSidenavContent>
+    <div *ngIf="resolution === ResolutionType.Mobile" class="mobile-menu">
+      <button mat-icon-button aria-label="menu" (click)="matSidenav.open()">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <ng-template [ngTemplateOutlet]="myAccountTemplate"></ng-template>
+    </div>
+
+    <div class="sidenav-content">
+      <div *ngIf="resolution !== ResolutionType.Mobile" class="top-navigation">
+        <div class="top-navigation__content">
+          <ng-template *ngIf="isAuthenticated" [ngTemplateOutlet]="myAccountTemplate"></ng-template>
+        </div>
+      </div>
+      <router-outlet (activate)="onActivate()"></router-outlet>
+    </div>
+
+    <ng-template #myAccountTemplate>
+      <div class="top-navigation__account" *ngIf="isAuthenticated">
+        <a class="top-navigation__link" [matMenuTriggerFor]="menu">
+          <span>My account</span>
+          <span class="arrow__container">
+            <span class="arrow__content"></span>
+          </span>
+        </a>
+        <mat-menu #menu="matMenu" [overlapTrigger]="false" class="account-menu">
+          <div> {{ userEmail }}</div>
+          <button mat-button color="primary" (click)="onLogout()">
+            Log out
+          </button>
+        </mat-menu>
+      </div>
+    </ng-template>
+  </div>
+</mat-sidenav-container>

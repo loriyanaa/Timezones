@@ -1,0 +1,14 @@
+<div class="spinner" *ngIf="timezonesIsLoading$ | async">
+  <mat-spinner class="spinner-icon"></mat-spinner>
+</div>
+
+<app-timezones
+  [timezones]="timezones$ | async"
+  [paginationInfo]="timezonesListInfo$ | async"
+  [filterValue]="filter"
+  (add)="onAdd()"
+  (edit)="onEdit($event)"
+  (delete)="onDelete($event)"
+  (page)="onPage($event)"
+  (filter)="onFilter($event)">
+</app-timezones>
